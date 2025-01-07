@@ -1,4 +1,12 @@
-# Reg S-type estimators program start here
+
+
+#' Fit a model using S-type estimator
+#'
+#' This function fits a regression model using the S-type estimator.
+#' @param x A numeric vector of predictors.
+#' @param y A numeric vector of responses.
+#' @return A list containing the model coefficients and diagnostics.
+#' @export
 
 #regstype=function(y,x,c=c.default,maxit=maxit.default,eps=eps.default) {
 reg_stype=function(y,x,c) {
