@@ -1,8 +1,12 @@
 
 
-
-# Weighted regression commands start here
-
+#' Weighted regression commands
+#'
+#' This function performs weighted regression analysis using stype robust estimators.
+#' @param weights A numeric vector of weights.
+#' @param y A numeric vector of responses.
+#' @return A list containing the model results.
+#' @export
 
 regweighteds=function(y,x,W) {
 
