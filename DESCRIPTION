@@ -10,15 +10,18 @@ Authors@R: c(
     person("Olgun", "Aydin", email = "olgun.aydin@pg.edu.pl", role = c("cre"),
            comment = c(ORCID = "0000-0002-7090-0931"))
 )
-Description: Introduces the S-type estimator, a novel robust estimator for analyzing general linear regression models,
-    as proposed by Sazak and Mutlu (2025). This package implements the S-type estimator to address issues of
-    outlier contamination and leverage points, providing a robust alternative to traditional methods.
-    Users can compute regression results using the S-type estimator and perform diagnostics to assess model fit
-    and performance. The package is designed for applied researchers and statisticians seeking advanced tools for
-    robust regression analysis. The implementation and methodology are based on the study, "Comparison of the
-    Robust Methods in the General Linear Regression Model" by Sazak and Mutlu (2025).
+Description: Implements the S-type estimator, a novel robust estimator for general linear regression models,
+    addressing challenges such as outlier contamination and leverage points. This package introduces robust
+    regression techniques to provide a robust alternative to classical methods and includes diagnostic tools
+    for assessing model fit and performance. The methodology is based on the study, "Comparison of the Robust
+    Methods in the General Linear Regression Model" by Sazak and Mutlu (2025). This package is designed for
+    statisticians and applied researchers seeking advanced tools for robust regression analysis.
 License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 4.0.0)
+Imports: datasets, stats
+Suggests: knitr, rmarkdown
 URL: https://github.com/filizkrdg/stype_estimator
 BugReports: https://github.com/filizkrdg/stype_estimator/issues
-Depends: R (>= 4.0.0)
 RoxygenNote: 7.1.1
