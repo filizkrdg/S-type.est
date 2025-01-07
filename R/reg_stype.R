@@ -1,6 +1,6 @@
 
 
-#' Fit a model using S-type estimator
+#' Fit a model using S-type robust estimator
 #'
 #' This function fits a regression model using the S-type estimator.
 #' @param x A numeric vector of predictors.
