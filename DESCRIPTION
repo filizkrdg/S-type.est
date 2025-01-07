@@ -18,4 +18,4 @@ Imports: datasets, stats
 Suggests: knitr, rmarkdown
 URL: https://github.com/filizkrdg/stype_estimator
 BugReports: https://github.com/filizkrdg/stype_estimator/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2

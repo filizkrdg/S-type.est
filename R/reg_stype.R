@@ -11,7 +11,7 @@
 #regstype=function(y,x,c=c.default,maxit=maxit.default,eps=eps.default) {
 reg_stype=function(y,x,c) {
 
-  #c.default=1.548
+  c.default=1.548
   #maxit.default=100
   #eps.default=0.00001
 
