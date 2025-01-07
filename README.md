@@ -10,28 +10,35 @@ This R package provides an implementation of the **S-type estimator**, a robust 
 ## Installation
 To install the package from GitHub, use the following command:
 
-# Install devtools if not already installed
+
+# Installing stype_estimator from CRAN
+install.packages("stype_estimator")
+
+# Installing stype_estimator development version
+Please make sure that you installed devtools package first:
+```R
 install.packages("devtools")
 
+
 # Install the package
+```R
 devtools::install_github("filizkrgd/stype_estimator")
 
 ##Installing stype_estimator from CRAN
+```R
 install.packages("stype_estimator")
 Installing stype_estimator development version
 Please make sure that you installed devtools package.
 
-If you would like to install dev version of the package, please use following command.
 
-devtools::install_github(filizkrdg/stype_estimator)
-Example usage of the package.
+#Example usage of the package.
 You can use datasets package to have example data to test stype_estimator package. 
 datasets package is being installed, while you are installing stype_estimator package, so you don't have to install the package again.
 
 Prepare the dataset
+```R
 library(datasets)
 data(airquality)
-
 
 str(airquality)
 cleanairquality=na.omit(airquality)
@@ -44,6 +51,7 @@ Y=data.frame("Y"=Y1)
 
 regsx=regstype(Y,X,1.548)
 
+```R
 ## References
 Sazak, M., & Mutlu, B. (2025). Comparison of the Robust Methods in the General Linear Regression Model.
 
