@@ -8,14 +8,8 @@ Authors@R: c(
     person("Hakan Savas", "Sazak", email = "hakan.savas.sazak@ege.edu.tr", role = c("aut"),
            comment = c(ORCID = "0000-0001-6123-1214")),
     person("Olgun", "Aydin", email = "olgun.aydin@pg.edu.pl", role = c("cre"),
-           comment = c(ORCID = "0000-0002-7090-0931"))
-)
-Description: Implements the S-type estimator, a novel robust estimator for general linear regression models,
-    addressing challenges such as outlier contamination and leverage points. This package introduces robust
-    regression techniques to provide a robust alternative to classical methods and includes diagnostic tools
-    for assessing model fit and performance. The methodology is based on the study, "Comparison of the Robust
-    Methods in the General Linear Regression Model" by Sazak and Mutlu (2025). This package is designed for
-    statisticians and applied researchers seeking advanced tools for robust regression analysis.
+           comment = c(ORCID = "0000-0002-7090-0931")))
+Description: Implements the S-type estimator, a novel robust estimator for general linear regression models, addressing challenges such as outlier contamination and leverage points. This package introduces robust regression techniques to provide a robust alternative to classical methods and includes diagnostic tools for assessing model fit and performance. The methodology is based on the study, "Comparison of the Robust Methods in the General Linear Regression Model" by Sazak and Mutlu (2025). This package is designed for statisticians and applied researchers seeking advanced tools for robust regression analysis.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
