@@ -13,7 +13,7 @@ To install the package from GitHub, use the following command:
 
 # Installing stype_estimator from CRAN
 ```
-install.packages("stype_estimator")
+install.packages("stype.est")
 ```
 # Installing stype_estimator development version
 Please make sure that you installed devtools package first:
@@ -27,7 +27,7 @@ devtools::install_github("filizkrgd/stype_estimator")
 ```
 ##Installing stype_estimator from CRAN
 ```
-install.packages("stype_estimator")
+install.packages("stype.est")
 ```
 Installing stype_estimator development version
 Please make sure that you installed devtools package.
