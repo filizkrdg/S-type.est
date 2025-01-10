@@ -12,21 +12,23 @@ To install the package from GitHub, use the following command:
 
 
 # Installing stype_estimator from CRAN
+```
 install.packages("stype_estimator")
-
+```
 # Installing stype_estimator development version
 Please make sure that you installed devtools package first:
-```R
+```
 install.packages("devtools")
-
+```
 
 # Install the package
-```R
+```
 devtools::install_github("filizkrgd/stype_estimator")
-
+```
 ##Installing stype_estimator from CRAN
-```R
+```
 install.packages("stype_estimator")
+```
 Installing stype_estimator development version
 Please make sure that you installed devtools package.
 
@@ -36,10 +38,9 @@ You can use datasets package to have example data to test stype_estimator packag
 datasets package is being installed, while you are installing stype_estimator package, so you don't have to install the package again.
 
 Prepare the dataset
-```R
+```
 library(datasets)
 data(airquality)
-
 str(airquality)
 cleanairquality=na.omit(airquality)
 Y1=cleanairquality$Ozone
@@ -48,16 +49,15 @@ X2=cleanairquality$Wind
 X3=cleanairquality$Solar.R
 X=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
 Y=data.frame("Y"=Y1)
-
 regsx=regstype(Y,X,1.548)
+```
 
-```R
 ## References
 Sazak, M., & Mutlu, B. (2025). Comparison of the Robust Methods in the General Linear Regression Model.
 
 ## Contact
 For any questions please contact:
 
-Filiz Karadag, filiz.karadag@ege.edu.tr
 Hakan Savas Sazak, hakan.savas.sazak@ege.edu.tr
+Filiz Karadag, filiz.karadag@ege.edu.tr
 Olgun Aydin, olgun.aydin@pg.edu.pl
