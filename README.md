@@ -3,6 +3,7 @@ This R package provides an implementation of the **S-type estimator**, a robust 
 
 ## Features
 - Perform robust linear regression using the S-type estimator.
+- Minimize the MSE of the model.
 - Minimize the influence of outliers and leverage points.
 - Diagnostic tools for model performance assessment.
 - Enhanced efficiency and adaptability for datasets with challenging characteristics.
