@@ -19,7 +19,7 @@ install.packages("devtools")
 
 # Install the package
 ```
-devtools::install_github("filizkrgd/stype_estimator")
+devtools::install_github("filizkrgd/stype.est")
 ```
 # Installing `stype.est` from CRAN
 ```
