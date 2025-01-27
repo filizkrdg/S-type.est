@@ -1,5 +1,5 @@
-# stype_estimator:An R package for Stype robust estimator
-This R package provides an implementation of the **S-type estimator**, a robust estimation method designed for general linear regression models. The S-type estimator was introduced by Sazak and Mutlu (2021) in their study, "Comparison of the Robust Methods in the General Linear Regression Model."
+# stype.est:An R package for Stype robust estimator
+This R package provides an implementation of the **stype.est**, a robust estimation method designed for general linear regression models. The S-type estimator was introduced by Sazak and Mutlu (2021) in their study, "Comparison of the Robust Methods in the General Linear Regression Model."
 
 ## Features
 - Perform robust linear regression using the S-type estimator.
@@ -12,11 +12,11 @@ This R package provides an implementation of the **S-type estimator**, a robust 
 To install the package from GitHub, use the following command:
 
 
-# Installing stype_estimator from CRAN
+# Installing stype.est from CRAN
 ```
 install.packages("stype.est")
 ```
-# Installing stype_estimator development version
+# Installing stype.est development version
 Please make sure that you installed devtools package first:
 ```
 install.packages("devtools")
@@ -26,17 +26,17 @@ install.packages("devtools")
 ```
 devtools::install_github("filizkrgd/stype_estimator")
 ```
-##Installing stype_estimator from CRAN
+##Installing stype.est from CRAN
 ```
 install.packages("stype.est")
 ```
-Installing stype_estimator development version
+Installing stype.est development version
 Please make sure that you installed devtools package.
 
 
 #Example usage of the package.
-You can use datasets package to have example data to test stype_estimator package. 
-datasets package is being installed, while you are installing stype_estimator package, so you don't have to install the package again.
+You can use datasets package to have example data to test stype.est package. 
+datasets package is being installed, while you are installing stype.est package, so you don't have to install the package again.
 
 Prepare the dataset
 ```
