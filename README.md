@@ -1,5 +1,5 @@
 # stype.est:An R package for Stype robust estimator
-This R package provides an implementation of the **stype.est**, a robust estimation method designed for general linear regression models. The S-type estimator was introduced by Sazak and Mutlu (2021) in their study, "Comparison of the Robust Methods in the General Linear Regression Model."
+This R package provides an implementation of the **stype.est**, a robust estimation method designed for general linear regression models. The S-type estimator was introduced by Sazak and Mutlu (2023) in their study, "Comparison of the Robust Methods in the General Linear Regression Model."
 
 ## Features
 - Perform robust linear regression using the S-type estimator.
@@ -51,7 +51,7 @@ regsx=regstype(Y,X,1.548)
 ```
 
 ## References
-- Sazak, M., & Mutlu, B. (2021). Comparison of the Robust Methods in the General Linear Regression Model.
+- Sazak, M., & Mutlu, B. (2023). Comparison of the Robust Methods in the General Linear Regression Model.
 
 ## Contact
 For any questions please contact:
