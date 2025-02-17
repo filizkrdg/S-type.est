@@ -1,5 +1,5 @@
-# stype.est:An R package for Stype robust estimator
-This R package provides an implementation of the **stype.est**, a robust estimation method designed for general linear regression models. The S-type estimator was introduced by Sazak and Mutlu (2023) in their study, "Comparison of the Robust Methods in the General Linear Regression Model."
+# S-type.est:An R package for S-type robust estimator
+This R package provides an implementation of the **S-type.est**, a robust estimation method designed for general linear regression models. The S-type estimator was introduced by Sazak and Mutlu (2023) in their study, "Comparison of the Robust Methods in the General Linear Regression Model."
 
 ## Features
 - Perform robust linear regression using the S-type estimator.
@@ -11,7 +11,7 @@ This R package provides an implementation of the **stype.est**, a robust estimat
 # Installation
 To install the package from GitHub, use the following command:
 
-# Installing stype.est development version
+# Installing S-type.est development version
 Please make sure that you installed `devtools` package first:
 ```
 install.packages("devtools")
@@ -19,17 +19,17 @@ install.packages("devtools")
 
 # Install the package
 ```
-devtools::install_github("filizkrgd/stype.est")
+devtools::install_github("filizkrgd/S-type.est")
 ```
-# Installing `stype.est` from CRAN
+# Installing `S-type.est` from CRAN
 ```
-install.packages("stype.est")
+install.packages("S-type.est")
 ```
-Installing `stype.est` development version
+Installing `S-type.est` development version
 
 # Example usage of the package.
-You can use `datasets` package to have example data to test `stype.est` package. 
-datasets package is being installed, while you are installing `stype.est` package, so you don't have to install the package again.
+You can use `datasets` package to have example data to test `S-type.est` package. 
+datasets package is being installed, while you are installing `S-type.est` package, so you don't have to install the package again.
 
 - Prepare the dataset
 ```
