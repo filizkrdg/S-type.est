@@ -1,12 +1,12 @@
-# S-type.est:An R package for S-type robust estimator
-This R package provides an implementation of the **S-type.est**, a robust estimation method designed for general linear regression models. The S-type estimator was introduced by Sazak and Mutlu (2023) in their study, "Comparison of the Robust Methods in the General Linear Regression Model."
+# S-type.est:An R package for the S-type robust estimators
+This R package provides an implementation of the **S-type.est**, a robust estimation method designed for the general linear regression models. The S-type estimators were introduced by Sazak and Mutlu (2023) in their study, "Comparison of the Robust Methods in the General Linear Regression Model."
 
 ## Features
-- Perform robust linear regression using the S-type estimator.
-- Minimize the MSE of the model.
-- Minimize the influence of outliers and leverage points.
+- Performs robust linear regression using the S-type estimators.
+- Minimizes the MSE of the model.
+- Minimizes the influence of outliers and leverage points.
 - Diagnostic tools for model performance assessment.
-- Enhanced efficiency and adaptability for datasets with challenging characteristics.
+- Enhanced efficiency and adaptability for data sets with challenging characteristics.
 
 # Installation
 To install the package from GitHub, use the following command:
