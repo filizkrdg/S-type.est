@@ -1,35 +1,27 @@
 
 
-#' Fit a model using S-type robust estimator
+#' Fit a regression model using the S-type estimators.
 #'
-#' This function fits a regression model using the S-type estimator.
-#' @param x A numeric vector of predictors.
-#' @param y A numeric vector of responses.
+#' This function fits a regression model using the S-type estimators.
+#' @param x Explanatory variables (Dataframe, matrix).
+#' @param y Dependent variables (Dataframe, vector).
+#' @param c .
 #' @return A list containing the model coefficients and diagnostics.
 #' @export
 
-#regstype=function(y,x,c=c.default,maxit=maxit.default,eps=eps.default) {
-reg_stype=function(y,x,c) {
+regstype=function(y,x,c) {
 
   c.default=1.548
-  #maxit.default=100
-  #eps.default=0.00001
-
-  f1=function(u,c) {
+  maxit=100
+  eps=0.00001
+   f1=function(u,c) {
 
     2*(((u^2)/2-(u^4)/(2*(c^2))+(u^6)/(6*(c^4)))*((1/sqrt(2*pi)*exp((-u^2)/2))))
   }
   f2=function(u,c) {
     2*((c^2/6)*((1/sqrt(2*pi)*exp((-u^2)/2))))
   }
-
-  maxit=100
-  eps=0.00001
-
   K=integrate(f1,c=c,0,c)$value+integrate(f2,c=c,c,Inf)$value
-
-  maxit=100
-  eps=0.00001
 
   if (is.vector(x)){
     n=length(x)
@@ -145,10 +137,7 @@ reg_stype=function(y,x,c) {
       Ws[i,ites]=(((abs(us[i,ites])<=c)*(((us[i,ites]^2)/2)-((us[i,ites]^4)/(2*(c^2)))+((us[i,ites]^6)/(6*(c^4)))))/(us[i,ites]^2))+
         ((abs(us[i,ites])>c)*(((c^2)/6)/(us[i,ites]^2)))
     }
-
-
     regtemp=regweighteds(y,x,as.vector(Ws[,ites]))
-
 
     ites=ites+1
 
@@ -160,11 +149,9 @@ reg_stype=function(y,x,c) {
       es[i,ites]=regtemp$e[i]
     }
 
-
     fark=betas[,ites]-betas[,ites-1]
 
     conds[ites-1]=norm(t(fark),"2")/norm(t(betas[,ites]),"2")
-
   }
 
   beta=betas[,ites]
@@ -183,8 +170,6 @@ reg_stype=function(y,x,c) {
   R2adj=regtemp$R2adj
   anovatable=regtemp$anovatable
   confint=regtemp$confint
-
-
 
   z=list(beta=beta,betas=betas,e=e,es=es,yhat=yhat,MSE=MSE,F=F,sig=sig,varbeta=varbeta,
          stdbeta=stdbeta,R2=R2,R2adj=R2adj,anovatable=anovatable,confint=confint,ites=ites,sigmas=sigmas,
