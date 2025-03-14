@@ -8,6 +8,7 @@
 #' @return A list containing the model coefficients and diagnostics.
 #' @export
 
+#' @import datasets
 #' @examples
 #'library(datasets)
 #'data(airquality)
