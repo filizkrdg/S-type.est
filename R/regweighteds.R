@@ -1,18 +1,17 @@
 
 
-#' Weighted regression commands
+#' Weighted regression analysis.
 #'
-#' This function performs weighted regression analysis using stype robust estimators.
-#' @param weights A numeric vector of weights.
-#' @param y A numeric vector of responses.
-#' @return A list containing the model results.
+#' This function performs weighted regression analysis.
+#' @param x Explanatory variables (Dataframe, matrix)
+#' @param y Dependent variables (Dataframe, vector)
+#' @param W A numeric vector of weights.
+#' @return A list containing the regression model results.
 #' @export
 
 regweighteds=function(y,x,W) {
-
   alpha=0.05
-  #alpha=(0.05)/4
-
+  
   if(is.data.frame(W)) W=as.vector(t(W))
   if(is.vector(W)) W=diag(W,nrow=length(W))
 
@@ -67,18 +66,6 @@ regweighteds=function(y,x,W) {
       y=yy }
   }
 
-
-  #  print(x)
-  #  print(y)
-
-  #print(n)
-  #print(p)
-
-  #e=sprintf("The current model: Yhat=%f+%f(X-%f) \n \n",
-  #          bet[1],bet[2],xM)
-  #cat(e)
-
-
   X=cbind(matrix(1,n,1),x)
 
   Xw=W^0.5%*%X
@@ -86,15 +73,8 @@ regweighteds=function(y,x,W) {
   XpX=t(X)%*%W%*%X
   Xpy=t(X)%*%W%*%y
 
-  #print(Xw)
-  #print(yw)
-  #print(XpX)
-  #print(Xpy)
-
   invXpX=solve(XpX)
   beta=invXpX%*%Xpy
-
-  #print(beta)
 
   yhat=X%*%beta
   yhatw=Xw%*%beta
@@ -102,11 +82,9 @@ regweighteds=function(y,x,W) {
   e=y-yhat
   ew=W^(1/2)%*%e
 
-
   SSE=t(ew)%*%ew
   SSE=as.numeric(SSE)
   MSE=SSE/(n-(p+1))
-
 
   s1=0
   for(i in 1:n) {
