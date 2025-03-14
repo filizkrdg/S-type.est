@@ -41,13 +41,13 @@ Y1=cleanairquality$Ozone
 X1=cleanairquality$Temp
 X2=cleanairquality$Wind
 X3=cleanairquality$Solar.R
-X=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
-Y=data.frame("Y"=Y1)
+x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
+y=data.frame("Y"=Y1)
 ```
 - Run `regstype`  function to get regression results using the S-type estimators.
 
 ```
-regsx=regstype(Y,X,1.548)
+regsx=regstype(y,x,1.548)
 ```
 
 ## References
