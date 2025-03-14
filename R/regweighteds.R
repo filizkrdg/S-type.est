@@ -21,10 +21,10 @@
 #'X1=cleanairquality$Temp
 #'X2=cleanairquality$Wind
 #'X3=cleanairquality$Solar.R
-#'x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
-#'y=data.frame("Y"=Y1)
-#'W=runif(111, min = 0, max = 1)
-
+#'  x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
+#'  y=data.frame("Y"=Y1)
+#'  W=runif(111, min = 0, max = 1)
+#'regweighteds(y,x,W)
 
 regweighteds=function(y,x,W) {
   alpha=0.05
