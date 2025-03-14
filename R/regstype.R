@@ -5,7 +5,6 @@
 #' This function fits a regression model using the S-type estimators.
 #' @param x Explanatory variables (Dataframe, matrix).
 #' @param y Dependent variables (Dataframe, vector).
-#' @param c Tuning constant.
 #' @return A list containing the model coefficients and diagnostics.
 #' @export
 
