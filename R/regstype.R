@@ -18,8 +18,9 @@
 #'X1=cleanairquality$Temp
 #'X2=cleanairquality$Wind
 #'X3=cleanairquality$Solar.R
-#'x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
-#'y=data.frame("Y"=Y1)
+#' x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
+#' y=data.frame("Y"=Y1)
+#'regstype(y,x)
 
 regstype=function(y,x) {
 
