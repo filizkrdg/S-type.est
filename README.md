@@ -44,7 +44,7 @@ X3=cleanairquality$Solar.R
 X=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
 Y=data.frame("Y"=Y1)
 ```
-- Run `regstype`  function to get regression results using stype robust estimator.
+- Run `regstype`  function to get regression results using the S-type estimators.
 
 ```
 regsx=regstype(Y,X,1.548)
