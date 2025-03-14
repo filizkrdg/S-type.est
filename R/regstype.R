@@ -21,9 +21,9 @@
 #'x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
 #'y=data.frame("Y"=Y1)
 
-regstype=function(y,x,c) {
+regstype=function(y,x) {
 
-  c.default=1.548
+  c=1.548
   maxit=100
   eps=0.00001
    f1=function(u,c) {
