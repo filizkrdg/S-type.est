@@ -9,6 +9,20 @@
 #' @return A list containing the regression model results.
 #' @export
 
+#' @examples
+#'library(datasets)
+#'data(airquality)
+#'str(airquality)
+#'cleanairquality=na.omit(airquality)
+#'Y1=cleanairquality$Ozone
+#'X1=cleanairquality$Temp
+#'X2=cleanairquality$Wind
+#'X3=cleanairquality$Solar.R
+#'x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
+#'y=data.frame("Y"=Y1)
+#'W=
+
+
 regweighteds=function(y,x,W) {
   alpha=0.05
   
