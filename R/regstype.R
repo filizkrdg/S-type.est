@@ -9,6 +9,18 @@
 #' @return A list containing the model coefficients and diagnostics.
 #' @export
 
+#' @examples
+#'library(datasets)
+#'data(airquality)
+#'str(airquality)
+#'cleanairquality=na.omit(airquality)
+#'Y1=cleanairquality$Ozone
+#'X1=cleanairquality$Temp
+#'X2=cleanairquality$Wind
+#'X3=cleanairquality$Solar.R
+#'x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
+#'y=data.frame("Y"=Y1)
+
 regstype=function(y,x,c) {
 
   c.default=1.548
