@@ -4,7 +4,7 @@
 \alias{regstype}
 \title{Fit a regression model using the S-type estimators}
 \usage{
-regstype(y, x, c)
+regstype(y, x)
 }
 \arguments{
 \item{y}{Dependent variables (Dataframe, vector).}
