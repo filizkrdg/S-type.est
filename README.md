@@ -47,7 +47,7 @@ y=data.frame("Y"=Y1)
 - Run `regstype`  function to get regression results using the S-type estimators.
 
 ```
-regsx=regstype(y,x,1.548)
+regsx=regstype(y,x)
 ```
 
 ## References
