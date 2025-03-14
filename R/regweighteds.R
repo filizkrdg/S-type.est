@@ -9,6 +9,9 @@
 #' @return A list containing the regression model results.
 #' @export
 
+
+#' @import datasets
+
 #' @examples
 #'library(datasets)
 #'data(airquality)
@@ -20,7 +23,7 @@
 #'X3=cleanairquality$Solar.R
 #'x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
 #'y=data.frame("Y"=Y1)
-#'W=
+#'W=runif(111, min = 0, max = 1)
 
 
 regweighteds=function(y,x,W) {
