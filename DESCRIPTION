@@ -1,21 +1,21 @@
-Package: S-type.est
+Package: Stype.est
 Type: Package
-Title: S-type Estimators
+Title: S-Type Estimators
 Version: 0.1.0
 Authors@R: c(
     person("Hakan Savas", "Sazak", email = "hakan.savas.sazak@ege.edu.tr", role = c("aut"),
            comment = c(ORCID = "0000-0001-6123-1214")),
-    person("Filiz", "Karadag", email = "filiz.karadag@ege.edu.tr", role = c("aut"),
+    person("Filiz", "Karadag", email = "filiz.karadag@ege.edu.tr", role = c("cre"),
            comment = c(ORCID = "0000-0002-0116-7772")),
-    person("Olgun", "Aydin", email = "olgun.aydin@pg.edu.pl", role = c("cre"),
+    person("Olgun", "Aydin", email = "olgun.aydin@pg.edu.pl", role = c("aut"),
            comment = c(ORCID = "0000-0002-7090-0931")))
 Description: Implements the S-type estimators, novel robust estimators for general linear regression models, addressing challenges such as outlier contamination and leverage points. This package introduces robust regression techniques to provide a robust alternative to classical methods and includes diagnostic tools for assessing model fit and performance. The methodology is based on the study, "Comparison of the Robust Methods in the General Linear Regression Model" by Sazak and Mutlu (2023). This package is designed for statisticians and applied researchers seeking advanced tools for robust regression analysis.
-License: GPL (>= 3)
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 4.0.0)
 Imports: datasets, stats
 Suggests: knitr, rmarkdown
-URL: https://github.com/filizkrdg/S-type.est
+URL: https://github.com/filizkrdg/S-type.est 
 BugReports: https://github.com/filizkrdg/S-type.est/issues
 RoxygenNote: 7.3.2

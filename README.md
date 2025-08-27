@@ -51,7 +51,7 @@ regsx=regstype(y,x)
 ```
 
 ## References
-- Sazak, M., & Mutlu, B. (2023). Comparison of the Robust Methods in the General Linear Regression Model.
+- Sazak, M. and Mutlu, B. (2023). Comparison of the Robust Methods in the General Linear Regression Model.
 
 ## Contact
 For any questions please contact:

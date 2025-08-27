@@ -2,13 +2,15 @@
 % Please edit documentation in R/regweighteds.R
 \name{regweighteds}
 \alias{regweighteds}
-\title{Weighted regression analysis}
+\title{Weighted regression analysis.}
 \usage{
 regweighteds(y, x, W)
 }
 \arguments{
-\item{y}{Dependent variables (Dataframe, vector).}
-\item{x}{Explanatory variables (Dataframe, matrix).}
+\item{y}{Dependent variables (Dataframe, vector)}
+
+\item{x}{Explanatory variables (Dataframe, matrix)}
+
 \item{W}{A numeric vector of weights.}
 }
 \value{
@@ -16,4 +18,18 @@ A list containing the regression model results.
 }
 \description{
 This function performs weighted regression analysis.
+}
+\examples{
+library(datasets)
+data(airquality)
+str(airquality)
+cleanairquality=na.omit(airquality)
+Y1=cleanairquality$Ozone
+X1=cleanairquality$Temp
+X2=cleanairquality$Wind
+X3=cleanairquality$Solar.R
+ x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
+ y=data.frame("Y"=Y1)
+ W=runif(111, min = 0, max = 1)
+regweighteds(y,x,W)
 }
