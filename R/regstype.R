@@ -1,194 +1,107 @@
-
-
 #' Fit a regression model using the S-type estimators.
+#' (Fully Optimized Version)
 #'
-#' This function fits a regression model using the S-type estimators.
-#' @param x Explanatory variables (Dataframe, matrix).
-#' @param y Dependent variables (Dataframe, vector).
+#' @param x Explanatory variables (Dataframe, matrix, vector).
+#' @param y Dependent variables (Dataframe, matrix, vector).
 #' @return A list containing the model coefficients and diagnostics.
 #' @export
 
-#' @import datasets
-#' @examples
-#'library(datasets)
-#'data(airquality)
-#'str(airquality)
-#'cleanairquality=na.omit(airquality)
-#'Y1=cleanairquality$Ozone
-#'X1=cleanairquality$Temp
-#'X2=cleanairquality$Wind
-#'X3=cleanairquality$Solar.R
-#' x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
-#' y=data.frame("Y"=Y1)
-#'regstype(y,x)
-
-regstype=function(y,x) {
-
-  c=1.548
-  maxit=100
-  eps=0.00001
-   f1=function(u,c) {
-
-    2*(((u^2)/2-(u^4)/(2*(c^2))+(u^6)/(6*(c^4)))*((1/sqrt(2*pi)*exp((-u^2)/2))))
+regstype <- function(y, x) {
+  c <- 1.548 
+  maxit <- 100 
+  eps <- 0.00001 
+  
+  f1 <- function(u, c) { 2 * (((u^2)/2 - (u^4)/(2*(c^2)) + (u^6)/(6*(c^4))) * dnorm(u)) } 
+  f2 <- function(u, c) { 2 * ((c^2/6) * dnorm(u)) } 
+  K <- integrate(f1, c=c, lower=0, upper=c)$value + integrate(f2, c=c, lower=c, upper=Inf)$value
+  
+  # Ensure strict matrix/vector types for C-level lm.fit functions
+  x_mat <- as.matrix(x)
+  y_vec <- as.numeric(as.matrix(y))
+  
+  n <- nrow(x_mat)
+  p <- ncol(x_mat)
+  s <- p + 1
+  
+  # Design matrix for fast WLS fitting (explicitly adding the intercept column)
+  X_design <- cbind(1, x_mat)
+  
+  # FAST FIT: base R's internal linear model engine (skips lm() overhead)
+  regls <- lm.fit(X_design, y_vec) 
+  betals <- as.numeric(regls$coefficients)
+  els <- as.numeric(regls$residuals)
+  
+  betas <- matrix(NA, nrow=s, ncol=maxit) 
+  es <- matrix(NA, nrow=n, ncol=maxit) 
+  us <- matrix(NA, nrow=n, ncol=maxit) 
+  Ws <- matrix(NA, nrow=n, ncol=maxit)
+  sigmas <- numeric(maxit) 
+  conds <- numeric(maxit)
+  
+  betas[, 1] <- betals
+  es[, 1] <- els
+  
+  sigmas[1] <- mad(es[, 1])
+  us[, 1] <- es[, 1] / sigmas[1]
+  
+  Ws[, 1] <- (abs(us[, 1]) <= c) * ((1 - ((us[, 1]/c)^2))^2)
+  
+  # First fast WLS fit
+  fit <- lm.wfit(x = X_design, y = y_vec, w = Ws[, 1])
+  betas[, 2] <- fit$coefficients
+  es[, 2] <- fit$residuals
+  
+  fark <- betas[, 2] - betas[, 1]
+  conds[1] <- sqrt(sum(fark^2)) / sqrt(sum(betas[, 2]^2))
+  
+  ites <- 2
+  
+  while ((conds[ites-1] >= eps) && (ites < maxit)) {
+    # sum(W * e^2) mathematically replicates sum(ew^2) for weighted residuals
+    sigmas[ites] <- sqrt((1/(n*K)) * sum(Ws[, ites-1] * es[, ites]^2))
+    
+    us_curr <- es[, ites] / sigmas[ites]
+    us[, ites] <- us_curr
+    
+    us2 <- us_curr^2
+    abs_us_le_c <- abs(us_curr) <= c
+    
+    Ws_curr <- numeric(n)
+    idx1 <- abs_us_le_c & (us2 > 0)
+    Ws_curr[idx1] <- ((us2[idx1]/2) - (us2[idx1]^2)/(2*(c^2)) + (us2[idx1]^3)/(6*(c^4))) / us2[idx1]
+    
+    idx2 <- !abs_us_le_c
+    Ws_curr[idx2] <- ((c^2)/6) / us2[idx2]
+    
+    Ws_curr[us2 == 0] <- 0.5 
+    Ws[, ites] <- Ws_curr
+    
+    # FAST FIT: Bypass regweighteds() during the iterative loop entirely
+    fit <- lm.wfit(x = X_design, y = y_vec, w = Ws_curr)
+    
+    ites <- ites + 1
+    
+    betas[, ites] <- fit$coefficients
+    es[, ites] <- fit$residuals
+    
+    fark <- betas[, ites] - betas[, ites-1]
+    conds[ites-1] <- sqrt(sum(fark^2)) / sqrt(sum(betas[, ites]^2))
   }
-  f2=function(u,c) {
-    2*((c^2/6)*((1/sqrt(2*pi)*exp((-u^2)/2))))
-  }
-  K=integrate(f1,c=c,0,c)$value+integrate(f2,c=c,c,Inf)$value
-
-  if (is.vector(x)){
-    n=length(x)
-    p=1
-    x=t(x)
-    x=t(x)
-
-  } else {
-    n=dim(x)[1]
-    p=dim(x)[2]
-
-    if(p==1) {
-
-      x=x[,1]
-      x=t(x)
-      x=t(x)
-
-    } else {
-
-      colind=2
-      xx=cbind(x[,1],x[,2])
-      while(colind<p) {
-        colind=colind+1
-        xx=cbind(xx,x[,colind])
-      }
-      x=xx }
-  }
-
-  if (is.vector(y)){
-    y=t(y)
-    y=t(y)
-  } else {
-    cy=dim(y)[2]
-    if(cy==1) {
-
-      y=y[,1]
-      y=t(y)
-      y=t(y)
-
-    } else {
-
-      colind=2
-      yy=cbind(y[,1],y[,2])
-      while(colind<cy) {
-        colind=colind+1
-        yy=cbind(yy,y[,colind])
-      }
-      y=yy }
-  }
-
-  s=p+1
-
-  regls=lm(y~x)
-
-  betals=regls$coefficients
-  betals=t(betals)
-  betals=t(betals)
-
-  els=regls$residuals
-  els=t(els)
-  els=t(els)
-
-  betas=array(NA,dim=c(s,maxit))
-  es=array(NA,dim=c(n,maxit))
-  us=array(NA,dim=c(n,maxit))
-  sigmas=array(NA,dim=c(maxit))
-  conds=array(NA,dim=c(maxit))
-
-
-  for(i in 1:s){
-    betas[i,1]=betals[i]
-  }
-
-  for(i in 1:n){
-    es[i,1]=els[i]
-  }
-
-  sigmas[1]=mad(es[,1])
-
-  for(i in 1:n){
-    us[i,1]=es[i,1]/sigmas[1]
-  }
-
-
-  W1s=(1-((us/c)^2))^2
-
-  Ws=(abs(us)<=c)*W1s
-
-  regtemp=regweighteds(y,x,as.vector(Ws[,1]))
-
-  for(i in 1:s){
-    betas[i,2]=regtemp$beta[i]
-  }
-
-  for(i in 1:n){
-    es[i,2]=regtemp$e[i]
-  }
-
-
-  fark=betas[,2]-betas[,1]
-
-  conds[1]=norm(t(fark),"2")/norm(t(betas[,2]),"2")
-
-  ites=2
-
-  while ((conds[ites-1]>=eps)&ites<100) {
-
-    sigmas[ites]=sqrt((1/(n*K))*sum(regtemp$ew^2))
-
-
-    for(i in 1:n){
-      us[i,ites]=es[i,ites]/sigmas[ites]
-      Ws[i,ites]=(((abs(us[i,ites])<=c)*(((us[i,ites]^2)/2)-((us[i,ites]^4)/(2*(c^2)))+((us[i,ites]^6)/(6*(c^4)))))/(us[i,ites]^2))+
-        ((abs(us[i,ites])>c)*(((c^2)/6)/(us[i,ites]^2)))
-    }
-    regtemp=regweighteds(y,x,as.vector(Ws[,ites]))
-
-    ites=ites+1
-
-    for(i in 1:s){
-      betas[i,ites]=regtemp$beta[i]
-    }
-
-    for(i in 1:n){
-      es[i,ites]=regtemp$e[i]
-    }
-
-    fark=betas[,ites]-betas[,ites-1]
-
-    conds[ites-1]=norm(t(fark),"2")/norm(t(betas[,ites]),"2")
-  }
-
-  beta=betas[,ites]
-
-  sigma=sigmas[ites-1]
-  W=as.vector(Ws[,ites-1])
-
-  e=regtemp$e
-  yhat=regtemp$yhat
-  MSE=regtemp$MSE
-  F=regtemp$F
-  sig=regtemp$sig
-  varbeta=regtemp$varbeta
-  stdbeta=regtemp$stdbeta
-  R2=regtemp$R2
-  R2adj=regtemp$R2adj
-  anovatable=regtemp$anovatable
-  confint=regtemp$confint
-
-  z=list(beta=beta,betas=betas,e=e,es=es,yhat=yhat,MSE=MSE,F=F,sig=sig,varbeta=varbeta,
-         stdbeta=stdbeta,R2=R2,R2adj=R2adj,anovatable=anovatable,confint=confint,ites=ites,sigmas=sigmas,
-         sigma=sigma,W=W,Ws=Ws,conds=conds)
-
+  
+  # Call regweighteds ONLY ONCE at the very end to get all the diagnostics & ANOVA tables
+  regtemp <- regweighteds(y, x, as.vector(Ws[, ites-1]))
+  
+  # Compile output list matching the original format perfectly
+  z <- list(
+    beta = betas[, ites], betas = betas, 
+    e = regtemp$e, es = es, yhat = regtemp$yhat,
+    MSE = regtemp$MSE, F = regtemp$F, sig = regtemp$sig, 
+    varbeta = regtemp$varbeta, stdbeta = regtemp$stdbeta, 
+    R2 = regtemp$R2, R2adj = regtemp$R2adj, 
+    anovatable = regtemp$anovatable, confint = regtemp$confint, 
+    ites = ites, sigmas = sigmas, sigma = sigmas[ites-1], 
+    W = Ws[, ites-1], Ws = Ws, conds = conds
+  )
+  
   return(z)
 }
-
-
