@@ -1,7 +1,8 @@
 Package: Stype.est
 Type: Package
 Title: S-Type Estimators
-Version: 0.1.0
+Version: 0.2.0
+Date: 2026-06-22
 Authors@R: c(
     person("Hakan Savas", "Sazak", email = "hakan.savas.sazak@ege.edu.tr", role = c("aut"),
            comment = c(ORCID = "0000-0001-6123-1214")),

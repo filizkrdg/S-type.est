@@ -2,31 +2,20 @@
 % Please edit documentation in R/regstype.R
 \name{regstype}
 \alias{regstype}
-\title{Fit a regression model using the S-type estimators.}
+\title{Fit a regression model using the S-type estimators.
+(Fully Optimized Version)}
 \usage{
 regstype(y, x)
 }
 \arguments{
-\item{y}{Dependent variables (Dataframe, vector).}
+\item{y}{Dependent variables (Dataframe, matrix, vector).}
 
-\item{x}{Explanatory variables (Dataframe, matrix).}
+\item{x}{Explanatory variables (Dataframe, matrix, vector).}
 }
 \value{
 A list containing the model coefficients and diagnostics.
 }
 \description{
-This function fits a regression model using the S-type estimators.
-}
-\examples{
-library(datasets)
-data(airquality)
-str(airquality)
-cleanairquality=na.omit(airquality)
-Y1=cleanairquality$Ozone
-X1=cleanairquality$Temp
-X2=cleanairquality$Wind
-X3=cleanairquality$Solar.R
-x=data.frame("X1"=X1,"X2"=X2,"X3"=X3)
-y=data.frame("Y"=Y1)
-regstype(y,x)
+Fit a regression model using the S-type estimators.
+(Fully Optimized Version)
 }
