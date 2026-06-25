@@ -19,7 +19,7 @@ install.packages("devtools")
 
 # Install the package
 ```
-devtools::install_github("filizkrgd/S-type.est")
+devtools::install_github("filizkrdg/S-type.est")
 ```
 # Installing `S-type.est` from CRAN
 ```
